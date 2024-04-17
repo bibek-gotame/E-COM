@@ -1,14 +1,19 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProductDetails } from "../utils/store/productSlice";
 import { useNavigate } from "react-router-dom";
 import { addToCart, removeCart } from "../utils/store/cartSlice";
-import { useState } from "react";
+
 function ProductCard({ p }) {
-  // const { description, price, images, title, thumbnail, rating } = p;
-  const [toggleCartFlag, setToggleCartFlag] = useState(false);
+  const cartItems = useSelector((store) => store.cart?.addedCart);
+  console.log(cartItems);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const isInCart = (id)=>{
+      return cartItems.some((item) => item.id === id);
+
+  }
+  
   return (
     <div className=" border-2 w-80 flex flex-col justify-between border-black bg-slate-200 overflow-hidden rounded-xl ">
       <div
@@ -32,25 +37,25 @@ function ProductCard({ p }) {
           <p>{p?.rating}</p>
         </div>
       </div>
-      {!toggleCartFlag ? (
-        <button
-          onClick={() => {
-            dispatch(addToCart(p));
-            setToggleCartFlag(!toggleCartFlag);
-          }}
-          className="bg-black text-white py-2 w-full font-bold text-xl"
-        >
-          Add to Cart
-        </button>
-      ) : (
+      {isInCart(p.id) ? (
         <button
           onClick={() => {
             dispatch(removeCart(p.id));
-            setToggleCartFlag(!toggleCartFlag);
+            // setToggleCartFlag(!toggleCartFlag);
           }}
           className="bg-black text-white py-2 w-full font-bold text-xl"
         >
           Remove from cart
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            dispatch(addToCart(p));
+            // setToggleCartFlag(!toggleCartFlag);
+          }}
+          className="bg-black text-white py-2 w-full font-bold text-xl"
+        >
+          Add to Cart
         </button>
       )}
     </div>
