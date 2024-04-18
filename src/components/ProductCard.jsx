@@ -5,7 +5,7 @@ import { addToCart, removeCart } from "../utils/store/cartSlice";
 
 function ProductCard({ p }) {
   const cartItems = useSelector((store) => store.cart?.addedCart);
-  const {thumbnail,title,description,price,rating,id} = p
+  const {thumbnail,title,description,price,rating,id,discountPercentage} = p
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,6 +34,8 @@ function ProductCard({ p }) {
           <p>{description}</p>
           <p>$ {price}</p>
           <p>{rating}</p>
+          <p>{discountPercentage}</p>
+
         </div>
       </div>
       {isInCart(id) ? (

@@ -5,7 +5,6 @@ const productSlice = createSlice({
     name:'products',
     initialState:{
         productList:null,
-        // renderingData:null,
         productCategory:null,
         productDetails:null,
 

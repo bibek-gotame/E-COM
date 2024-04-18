@@ -2,10 +2,12 @@ import { useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 import { useGetProductList } from "../hooks/useGetProductList";
 import { useEffect, useRef, useState } from "react";
+import Button from "./button";
 
 function ProductListing() {
   useGetProductList();
   const productList = useSelector((store) => store.products?.productList);
+  
   const [error, seterror] = useState("Loading..");
   const [renderingData, setrenderingData] = useState(null);
   const inputName = useRef(null);
@@ -20,11 +22,22 @@ function ProductListing() {
     setrenderingData(productName);
     seterror("No product available");
   };
-
+// console.log(productList);
   useEffect(() => {
     setrenderingData(productList);
   }, [productList]);
 
+  const handleTopRate = ()=>{
+    const topRatedProduct = productList.filter(p=> p.rating >= 4.5)
+    setrenderingData(topRatedProduct)
+  }
+
+  const handleDiscount = ()=>{
+    const disProduct = productList.filter(p=> p.discountPercentage >= 10 )
+    setrenderingData(disProduct)
+    console.log(disProduct);
+
+  }
   if (!renderingData) {
     return (
       <>
@@ -34,7 +47,17 @@ function ProductListing() {
   } else
     return (
       <div>
-        <div className="flex gap-3 w-fit mx-auto mt-16 mb-16 bg-black px-4 py-2 ">
+        <div className="flex justify-between items-center mt-16 mb-16 px-10">
+
+        <div className="flex gap-2 items-center  h-fit">
+          <h1 className="font-bold text-xl">Filters</h1>
+          <Button onClick={handleTopRate} title={'Top Rated | 4.5+'} />
+          <Button onClick={handleDiscount} title={'Discount | 10% +'} />
+
+        </div>
+
+
+        <div className="flex gap-3 w-fit   bg-black px-4 py-2 border-2 ">
           <input
             ref={inputName}
             className="w-96 border-2 px-4 py-2"
@@ -49,6 +72,7 @@ function ProductListing() {
             Search
           </button>
         </div>
+        </div> 
         <div>
           <h1 className="text-xl font-bold pl-10  border-b-2 border-t-2 border-slate-500">
             Products
