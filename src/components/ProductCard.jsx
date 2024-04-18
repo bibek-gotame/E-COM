@@ -5,13 +5,12 @@ import { addToCart, removeCart } from "../utils/store/cartSlice";
 
 function ProductCard({ p }) {
   const cartItems = useSelector((store) => store.cart?.addedCart);
-  console.log(cartItems);
+  const {thumbnail,title,description,price,rating,id} = p
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const isInCart = (id)=>{
-      return cartItems.some((item) => item.id === id);
-
+      return cartItems.some((item) => item?.id === id);
   }
   
   return (
@@ -26,22 +25,21 @@ function ProductCard({ p }) {
           {" "}
           <img
             className=" rounded-lg mx-auto h-full object-cover"
-            src={p?.thumbnail}
-            alt={p?.title}
+            src={thumbnail}
+            alt={title}
           />
         </div>
         <div>
-          <h1>{p?.title}</h1>
-          <p>{p?.description}</p>
-          <p>$ {p?.price}</p>
-          <p>{p?.rating}</p>
+          <h1>{title}</h1>
+          <p>{description}</p>
+          <p>$ {price}</p>
+          <p>{rating}</p>
         </div>
       </div>
-      {isInCart(p.id) ? (
+      {isInCart(id) ? (
         <button
           onClick={() => {
-            dispatch(removeCart(p.id));
-            // setToggleCartFlag(!toggleCartFlag);
+            dispatch(removeCart(id));
           }}
           className="bg-black text-white py-2 w-full font-bold text-xl"
         >
@@ -51,7 +49,6 @@ function ProductCard({ p }) {
         <button
           onClick={() => {
             dispatch(addToCart(p));
-            // setToggleCartFlag(!toggleCartFlag);
           }}
           className="bg-black text-white py-2 w-full font-bold text-xl"
         >
