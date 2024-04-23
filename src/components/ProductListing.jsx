@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 import { useGetProductList } from "../hooks/useGetProductList";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./button";
 
 function ProductListing() {
@@ -9,23 +9,13 @@ function ProductListing() {
   const productList = useSelector((store) => store.products?.productList);
   
   const [error, seterror] = useState("Loading..");
-  const [renderingData, setrenderingData] = useState(null);
-  const inputName = useRef(null);
+  const [renderingData, setrenderingData] = useState(productList);
 
-  const getSearch = () => {
-    const productName = productList?.filter(
-      (p) =>
-        p.title.toLowerCase().includes(inputName.current.value.toLowerCase()) ||
-        p.brand.toLowerCase().includes(inputName.current.value.toLowerCase()) ||
-        p.category.toLowerCase().includes(inputName.current.value.toLowerCase())
-    );
-    setrenderingData(productName);
-    seterror("No product available");
-  };
+  
 // console.log(productList);
-  useEffect(() => {
-    setrenderingData(productList);
-  }, [productList]);
+  // useEffect(() => {
+  //   setrenderingData(productList);
+  // }, [productList]);
 
   const handleTopRate = ()=>{
     const topRatedProduct = productList.filter(p=> p.rating >= 4.5)
@@ -54,23 +44,6 @@ function ProductListing() {
           <Button onClick={handleTopRate} title={'Top Rated | 4.5+'} />
           <Button onClick={handleDiscount} title={'Discount | 10% +'} />
 
-        </div>
-
-
-        <div className="flex gap-3 w-fit   bg-black px-4 py-2 border-2 ">
-          <input
-            ref={inputName}
-            className="w-96 border-2 px-4 py-2"
-            type="text"
-            placeholder="Enter the Product Name"
-          />
-          <button
-            onClick={getSearch}
-            className="px-4 py-2 bg-green-600 rounded-sm text-white hover:text-green-600 hover:bg-white 
-           font-bold text-lg"
-          >
-            Search
-          </button>
         </div>
         </div> 
         <div>
