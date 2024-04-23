@@ -14,14 +14,14 @@ function ProductCard({ p }) {
   }
   
   return (
-    <div className=" border-2 w-80 flex flex-col justify-between border-black bg-slate-200 overflow-hidden rounded-xl ">
+    <div className=" border-2 w-64 flex flex-col justify-between border-black bg-slate-200 overflow-hidden rounded-xl ">
       <div
         onClick={() => {
           dispatch(addProductDetails(p));
           navigate("/productDetail");
         }}
       >
-        <div className="p-2 h-[17rem]  ">
+        <div className="p-2 h-[15rem]  ">
           {" "}
           <img
             className=" rounded-lg mx-auto h-full object-cover"

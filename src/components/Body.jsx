@@ -1,12 +1,12 @@
-import { Outlet } from 'react-router-dom'
-import Header from './Header'
+import { Outlet } from "react-router-dom";
+import Header from "./Header";
 function Body() {
   return (
     <div>
-        <Header/>
-        <Outlet/>
+      <Header />
+      <Outlet />
     </div>
-  )
+  );
 }
 
-export default Body
+export default Body;
