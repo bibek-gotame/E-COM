@@ -1,4 +1,3 @@
-
 import { Provider } from "react-redux";
 import Body from "./components/Body";
 import { store } from "./utils/store/store";
@@ -7,40 +6,42 @@ import ProductListing from "./components/ProductListing";
 import ProductDetails from "./components/ProductDetails";
 import Cart from "./components/Cart";
 import ProductCategory from "./components/ProductCategory";
+import Sliderr from "./components/Slider";
 
 function App() {
-const router = createBrowserRouter([
-  {
-    path:'/',
-    element: <Body />,
-    children:[
-      {
-        path:'/productList',
-        element:<ProductListing/>
-      },
-      {
-        path:'/productDetail',
-        element:<ProductDetails/>
-      },
-      {
-        path:'/cart',
-        element:<Cart/>
-      },
-      {
-        path:'/',
-        element:<ProductCategory/>
-      },
-      
-      
-    ]
-
-  }
-])
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Body />,
+      children: [
+        {
+          path: "/productList",
+          element: <ProductListing />,
+        },
+        {
+          path: "/productDetail",
+          element: <ProductDetails />,
+        },
+        {
+          path: "/cart",
+          element: <Cart />,
+        },
+        {
+          path: "/",
+          element: <ProductCategory />,
+        },
+        {
+          path: "/slider",
+          element: <Sliderr/>,
+        },
+      ],
+    },
+  ]);
   return (
     <>
-    <Provider store={store} >
-<RouterProvider router={router}/>
-    </Provider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </>
   );
 }
