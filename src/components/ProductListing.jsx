@@ -25,7 +25,7 @@ function ProductListing() {
   
     seterror("No product available");
   };
-console.log(productList);
+// console.log(productList);
   useEffect(() => {
     setrenderingData(productList);
   }, [productList]);
@@ -50,17 +50,8 @@ console.log(productList);
   } else
     return (
       <div >
-       
-        <div className=" flex justify-between items-center mt-16 mb-16 px-10">
-      
-        <div className="flex gap-2 items-center  h-fit">
-          <h1 className="font-bold text-xl">Filters</h1>
-          <Button onClick={handleTopRate} title={'Top Rated | 4.5+'} />
-          <Button onClick={handleDiscount} title={'Discount | 10% +'} />
-
-        </div>
-        <div>
-        <div className="flex gap-3 w-fit   bg-black px-4 py-2 border-2 ">
+        {/* search bar */}
+       <div className="flex gap-3 w-fit mx-auto  bg-black px-4 py-2 border-2 ">
           <input
             ref={inputName}
             className="w-96 border-2 text-black  px-4 py-2"
@@ -75,13 +66,23 @@ console.log(productList);
             Search
           </button>
         </div>
-      </div>
-        </div> 
-        <div>
-          <h1 className="text-xl font-bold pl-10  border-b-2 border-t-2 border-slate-500">
+        {/* <h1 className="text-xl font-bold pl-10 mt-10 border-b-2 border-t-2 border-slate-500">
             Products
-          </h1>
-          <div className="flex flex-wrap place-content-evenly gap-4   px-2 pt-5 ">
+          </h1> */}
+        <div className=" flex   mt-16 mb-16 px-10">
+      {/* filters */}
+        <div className="border-r-4  min-w-[15rem]  border-black">
+          <h1 className="font-bold text-xl">Filters</h1>
+          <Button onClick={handleTopRate} title={'Top Rated | 4.5+'} />
+          <Button onClick={handleDiscount} title={'Discount | 10% +'} />
+
+        </div>
+        <div>
+        
+      </div>
+      <div>
+         
+          <div className="flex flex-wrap place-content-evenly gap-2   px-2 pt-5 ">
             {renderingData && renderingData.length === 0 && (
               <p className="font-bold text-xl text-center text-black">
                 {error}
@@ -93,6 +94,8 @@ console.log(productList);
             ))}
           </div>
         </div>
+        </div> 
+        
       </div>
     );
 }
