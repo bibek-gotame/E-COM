@@ -3,7 +3,7 @@ import Header from './Header'
 function Body() {
   return (
     <div>
-        {/* <Header/> */}
+        <Header/>
         <Outlet/>
     </div>
   )
