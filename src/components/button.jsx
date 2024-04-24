@@ -1,8 +1,13 @@
-
-function Button({title,onClick}) {
+function Button({ title, onClick }) {
   return (
-    <button onClick={onClick} className="border-2 rounded-md px-2 w-20 bg-black text-white font-bold">{title}</button>
-)
+    <button
+      onClick={onClick}
+      className="border-[1px] border-gray-400 rounded-md w-[10rem] bg-white flex gap-2 items-center px-2 text-black "
+    >
+      {/* <input type="checkbox" id="checkbox" name="checkbox" /> */}
+      {title}
+    </button>
+  );
 }
 
-export default Button
+export default Button;
