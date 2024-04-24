@@ -5,7 +5,6 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ProductListing from "./components/ProductListing";
 import ProductDetails from "./components/ProductDetails";
 import Cart from "./components/Cart";
-import ProductCategory from "./components/ProductCategory";
 import Sliderr from "./components/Slider";
 
 function App() {
@@ -15,7 +14,7 @@ function App() {
       element: <Body />,
       children: [
         {
-          path: "/productList",
+          path: "/",
           element: <ProductListing />,
         },
         {
@@ -26,10 +25,7 @@ function App() {
           path: "/cart",
           element: <Cart />,
         },
-        {
-          path: "/",
-          element: <ProductCategory />,
-        },
+      
         {
           path: "/slider",
           element: <Sliderr/>,

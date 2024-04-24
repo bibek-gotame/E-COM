@@ -5,9 +5,9 @@ const productSlice = createSlice({
     name:'products',
     initialState:{
         productList:null,
-        productCategory:null,
+        productRender:null,
         productDetails:null,
-
+        // error:'Loading'
     },
     reducers:{
         addProductList:(state,action)=>{
@@ -15,8 +15,10 @@ const productSlice = createSlice({
             state.productList = action.payload
             // state.renderingData = action.payload
         },
-        addProductCategory:(state,action)=>{
-            state.productCategory = action.payload
+        addProductRender:(state,action)=>{
+            
+            state.productRender = action.payload
+            // state.error = action.payload
         },
         addProductDetails:(state,action)=>{
             state.productDetails = action.payload
@@ -24,5 +26,5 @@ const productSlice = createSlice({
     }
 })
 
-export const { addProductList,addProductCategory,addProductDetails} = productSlice.actions
+export const { addProductList,addProductRender,addProductDetails} = productSlice.actions
 export default productSlice.reducer
