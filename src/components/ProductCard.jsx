@@ -43,7 +43,7 @@ function ProductCard({ p }) {
           <div>
             <h1>{title}</h1>
             <p>{description}</p>
-            <p>$ {price}</p>
+            <p>$ {price * 133}</p>
             <p>{rating}</p>
             <p>{discountPercentage}</p>
           </div>

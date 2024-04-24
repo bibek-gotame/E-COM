@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 import { useGetProductList } from "../hooks/useGetProductList";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./button";
 import { addProductRender } from "../utils/store/productSlice";
 
@@ -11,6 +11,11 @@ function ProductListing() {
   const renderingData = useSelector((store) => store.products?.productRender);
   const dispatch = useDispatch();
   // const [productBrand, setProductBrand] = useState(null);
+  const [min, setMin] = useState("");
+  const [max, setMax] = useState("");
+  const Min = useRef()
+  const Max = useRef()
+
   useEffect(() => {
     dispatch(addProductRender(productList));
     // console.log(productList);
@@ -30,25 +35,27 @@ function ProductListing() {
   //   const newBrand = new Set(brand);
   //   setProductBrand(newBrand);
   // };
-//! All are runnnig in rendering but should change dynamicaly
+  //! All are runnnig in rendering but should change dynamicaly
+
   const handleTopRate4_5 = () => {
-    const topRatedProduct = renderingData.filter((p) => p.rating >= 4.5);
-    console.log('1');
+    const topRatedProduct = productList.filter((p) => p.rating >= 4.5);
+    console.log("1");
     dispatch(addProductRender(topRatedProduct));
   };
   const handleTopRate4 = () => {
-    const topRatedProduct = renderingData.filter((p) => p.rating >= 4);
-    console.log('2');
+    const topRatedProduct = productList.filter((p) => p.rating >= 4);
+    console.log("2");
     dispatch(addProductRender(topRatedProduct));
   };
   const handleTopRate3_5 = () => {
-    const topRatedProduct = renderingData.filter((p) => p.rating >= 3.5);
+    const topRatedProduct = productList.filter((p) => p.rating >= 3.5);
     dispatch(addProductRender(topRatedProduct));
   };
   const handleTopRate3 = () => {
-    const topRatedProduct = renderingData.filter((p) => p.rating >= 3);
+    const topRatedProduct = productList.filter((p) => p.rating >= 3);
     dispatch(addProductRender(topRatedProduct));
   };
+
   const handleDiscount20 = () => {
     const disProduct = productList.filter((p) => p.discountPercentage >= 20);
     dispatch(addProductRender(disProduct));
@@ -89,7 +96,22 @@ function ProductListing() {
               <Button onClick={handleTopRate3_5} title={"3.5 & Up"} />
               <Button onClick={handleTopRate3} title={"3 & Up"} />
             </div>
-            {/* <div className="price"></div> */}
+            <div className="price font-serif"></div>
+            <h1 className="font-serif">Price</h1>
+            <div className=" flex gap-2">
+              <input
+              ref={Min}
+                type="text"
+                placeholder="min"
+                className="w-24 border border-black   rounded-sm px-2 "
+              />
+              <input
+              ref={Max}
+                type="text"
+                placeholder="max"
+                className="w-24 border border-black   rounded-sm px-2 "
+              />
+            </div>
             <div className="discount">
               <h1>Discount</h1>
               <Button onClick={handleDiscount20} title={"20% & more"} />
