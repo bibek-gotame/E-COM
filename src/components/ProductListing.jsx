@@ -83,7 +83,7 @@ function ProductListing() {
     return (
       <div>
         {/* <p>{}</p> */}
-        <div>Category</div>
+        <div>Categories</div>
         <div>Sort by</div>
         <div className=" flex gap-2  mb-16 px-4">
           {/* filters */}
