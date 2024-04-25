@@ -4,17 +4,23 @@ import { useGetProductList } from "../hooks/useGetProductList";
 import { useEffect, useState } from "react";
 import Button from "./button";
 import { addProductRender } from "../utils/store/productSlice";
+import { useGetProductCategory } from "../hooks/useGetProductCategory";
 
 function ProductListing() {
   useGetProductList();
+  useGetProductCategory();
   const productList = useSelector((store) => store.products?.productList);
   const renderingData = useSelector((store) => store.products?.productRender);
   const searchResult = useSelector((store) => store.products?.searchResult);
+  const productCategory = useSelector(
+    (store) => store.products?.productCategory
+  );
+
   const dispatch = useDispatch();
   // const [productBrand, setProductBrand] = useState(null);
-  const [min, setMin] = useState(null);
-  const [max, setMax] = useState(null);
-  const [priceError, setPriceError] = useState();
+  const [min, setMin] = useState(""); // ?set as string until pricing validation
+  const [max, setMax] = useState("");
+  // const [priceError, setPriceError] = useState();
   useEffect(() => {
     dispatch(addProductRender(productList));
     // console.log(productList);
@@ -37,7 +43,7 @@ function ProductListing() {
   //! All are runnnig in rendering but should change dynamicaly
 
   const handleTopRate4_5 = () => {
-    const topRatedProduct = productList.filter((p) => p.rating >= 4.5);
+    const topRatedProduct = renderingData.filter((p) => p.rating >= 4.5);
     dispatch(addProductRender(topRatedProduct));
   };
   const handleTopRate4 = () => {
@@ -62,7 +68,7 @@ function ProductListing() {
     dispatch(addProductRender(disProduct));
   };
   const handleDiscount10 = () => {
-    const disProduct = productList.filter((p) => p.discountPercentage >= 10);
+    const disProduct = renderingData.filter((p) => p.discountPercentage >= 10);
     dispatch(addProductRender(disProduct));
   };
   const handleDiscount5 = () => {
@@ -81,11 +87,16 @@ function ProductListing() {
 
     // console.log("fine");
     const priceFilteredData = renderingData.filter(
-      (d) => d.price*133 <= max && d.price*133 >= min
+      (d) => d.price * 133 <= max && d.price * 133 >= min
     );
     dispatch(addProductRender(priceFilteredData));
     console.log(priceFilteredData);
   };
+  const getCategory = (p)=>{
+    const fileteredData = productList.filter(pL => pL.category === p)
+    // console.log(fileteredData);
+    dispatch(addProductRender(fileteredData))
+  }
 
   if (!renderingData) {
     return (
@@ -96,23 +107,35 @@ function ProductListing() {
   } else
     return (
       <div>
-        {/* <p>{}</p> */}
-        <div>Categories</div>
+        <div className="flex gap-1 flex-wrap px-2 justify-center mt-4">
+          {productCategory &&
+            productCategory.map((p, i) => (
+              <p
+              onClick={()=> getCategory(p)}
+                key={i}
+                className="rounded-md bg-black text-white font-semibold px-2 py-1 cursor-pointer "
+              >
+                {p}
+              </p>
+            ))}
+        </div>
         <div>Sort by</div>
         {searchResult && <div>Search Results for '{searchResult}' </div>}
         <div className=" flex gap-2  mb-16 px-4">
           {/* filters */}
-          <div className="rounded-lg bg-slate-200 h-fit min-w-[15rem]  ">
-            <h1 className="font-bold text-xl">Filters</h1>
+          <div className="rounded-lg bg-slate-200 h-fit min-w-[15rem] px-2  py-3 ">
+            <h1 className="font-bold text-xl">
+              Filters | Items ({renderingData.length})
+            </h1>
             <div className="rating">
-              <h1 className="font-bold">Customer rating</h1>
+              <h1 className="font-bold my-2">Customer rating</h1>
               <Button onClick={handleTopRate4_5} title={"4.5 & Up"} />
               <Button onClick={handleTopRate4} title={"4 & Up"} />
               <Button onClick={handleTopRate3_5} title={"3.5 & Up"} />
               <Button onClick={handleTopRate3} title={"3 & Up"} />
             </div>
-            <div className="price font-serif"></div>
-            <h1 className="font-serif">Price</h1>
+            <div className="price my-2"></div>
+            <h1 className="font-bold">Price</h1>
 
             <div className=" flex gap-2">
               <input
@@ -131,16 +154,16 @@ function ProductListing() {
                 className="w-24 border border-black   rounded-sm px-2 "
               />
             </div>
-            {priceError && <p>{priceError}</p>}
+            {/* {priceError && <p>{priceError}</p>} */}
 
-              <button
-                onClick={() => handlePriceSearch(min, max)}
-                className="border px-2 text-sm bg-gray-200 rounded-sm hover:text-gray-200 hover:bg-black font-semibold"
-              >
-                search
-              </button>
-            <div className="discount">
-              <h1>Discount</h1>
+            <button
+              onClick={() => handlePriceSearch(min, max)}
+              className="border px-2 text-sm bg-gray-100 border-black rounded-sm hover:text-gray-200 hover:bg-black font-semibold"
+            >
+              search
+            </button>
+            <div className="discount my-2">
+              <h1 className="my-2 font-bold">Discount</h1>
               <Button onClick={handleDiscount20} title={"20% & more"} />
               <Button onClick={handleDiscount15} title={"15% & more"} />
               <Button onClick={handleDiscount10} title={"10% & more"} />
