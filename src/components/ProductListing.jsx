@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 import { useGetProductList } from "../hooks/useGetProductList";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./button";
 import { addProductRender } from "../utils/store/productSlice";
 
@@ -9,13 +9,12 @@ function ProductListing() {
   useGetProductList();
   const productList = useSelector((store) => store.products?.productList);
   const renderingData = useSelector((store) => store.products?.productRender);
+  const searchResult = useSelector((store) => store.products?.searchResult);
   const dispatch = useDispatch();
   // const [productBrand, setProductBrand] = useState(null);
-  const [min, setMin] = useState("");
-  const [max, setMax] = useState("");
-  const Min = useRef()
-  const Max = useRef()
-
+  const [min, setMin] = useState(null);
+  const [max, setMax] = useState(null);
+  const [priceError, setPriceError] = useState();
   useEffect(() => {
     dispatch(addProductRender(productList));
     // console.log(productList);
@@ -39,12 +38,10 @@ function ProductListing() {
 
   const handleTopRate4_5 = () => {
     const topRatedProduct = productList.filter((p) => p.rating >= 4.5);
-    console.log("1");
     dispatch(addProductRender(topRatedProduct));
   };
   const handleTopRate4 = () => {
     const topRatedProduct = productList.filter((p) => p.rating >= 4);
-    console.log("2");
     dispatch(addProductRender(topRatedProduct));
   };
   const handleTopRate3_5 = () => {
@@ -73,10 +70,53 @@ function ProductListing() {
     dispatch(addProductRender(disProduct));
   };
 
+  const data = [{ price: 100 }, { price: 200 }, { price: 300 }];
+  const handlePriceSearch = (min, max) => {
+    // console.log(min);
+    // console.log(max);
+    // if (min > max) return setPriceError("min should be greater than");
+    // if (min > max) {
+    //   setPriceError(null);
+    // }
+
+    // console.log("fine");
+    const priceFilteredData = data.filter(
+      (d) => d.price <= max && d.price >= min
+    );
+    // dispatch(addProductRender(priceFilteredData))
+    console.log(priceFilteredData);
+  };
+
   if (!renderingData) {
     return (
       <>
-        <p className="font-bold text-xl text-center text-black">Loading</p>
+        <p className="font-bold text-xl text-center text-black">
+          Loading {searchResult}
+        </p>
+        <div className=" flex gap-2">
+          <input
+            value={min}
+            onChange={(e) => setMin(e.target.value)}
+            type="number"
+            placeholder="min"
+            className="w-24 border border-black   rounded-sm px-2 "
+          />
+          -
+          <input
+            value={max}
+            onChange={(e) => setMax(e.target.value)}
+            type="number"
+            placeholder="max"
+            className="w-24 border border-black   rounded-sm px-2 "
+          />
+          <button
+            onClick={() => handlePriceSearch(min, max)}
+            className="border px-2 text-sm bg-gray-200 rounded-sm hover:text-gray-200 hover:bg-black font-semibold"
+          >
+            search
+          </button>
+          {priceError}
+        </div>
       </>
     );
   } else
@@ -85,6 +125,7 @@ function ProductListing() {
         {/* <p>{}</p> */}
         <div>Categories</div>
         <div>Sort by</div>
+        {s && <div>Search Results for {s} </div>}
         <div className=" flex gap-2  mb-16 px-4">
           {/* filters */}
           <div className="rounded-lg bg-slate-200 h-fit min-w-[15rem]  ">
@@ -100,13 +141,11 @@ function ProductListing() {
             <h1 className="font-serif">Price</h1>
             <div className=" flex gap-2">
               <input
-              ref={Min}
                 type="text"
                 placeholder="min"
                 className="w-24 border border-black   rounded-sm px-2 "
               />
               <input
-              ref={Max}
                 type="text"
                 placeholder="max"
                 className="w-24 border border-black   rounded-sm px-2 "

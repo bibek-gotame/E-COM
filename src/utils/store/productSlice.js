@@ -7,6 +7,7 @@ const productSlice = createSlice({
         productList:null,
         productRender:null,
         productDetails:null,
+        searchResult:null
         // error:'Loading'
     },
     reducers:{
@@ -22,9 +23,12 @@ const productSlice = createSlice({
         },
         addProductDetails:(state,action)=>{
             state.productDetails = action.payload
+        },
+        addsearchResult:(state,action)=>{
+            state.searchResult = action.payload
         }
     }
 })
 
-export const { addProductList,addProductRender,addProductDetails} = productSlice.actions
+export const { addProductList,addProductRender,addProductDetails,addsearchResult} = productSlice.actions
 export default productSlice.reducer

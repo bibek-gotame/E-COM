@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addProductRender } from "../utils/store/productSlice";
+import { addProductRender, addsearchResult } from "../utils/store/productSlice";
 import { useRef } from "react";
 
 function Header() {
@@ -9,7 +9,10 @@ function Header() {
   const Carts = useSelector((store) => store.cart?.addedCart);
   const productList = useSelector((store) => store.products?.productList);
   const inputName = useRef(null);
+  const searchResult = useSelector((store) => store.products?.searchResult)
 
+
+console.log(searchResult);
   const getSearch = () => {
     const input = inputName.current.value.toLowerCase();
     
@@ -19,6 +22,7 @@ function Header() {
       // return new RegExp( input, "i").test(productWords);
     });
     dispatch(addProductRender(searchProduct));
+    dispatch(addsearchResult(input))
     inputName.current.value = "";
   };
 
