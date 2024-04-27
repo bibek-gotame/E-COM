@@ -47,14 +47,17 @@ yarn start
 
 5.Open your browser and visit http://localhost:3000 to view the application.
 
-Contributing
+<h2>Contributing</h2>
 
 We welcome contributions from the community! Whether you find a bug, have a feature request, or want to contribute code, please feel free to open an issue or submit a pull request. We're always open to new ideas and improvements.
 
-Feedback
+
+<h2>Feedback</h2>
+
 We value your feedback! If you have any questions, suggestions, or just want to say hi, don't hesitate to reach out to us. You can contact us via email at bibekgotame011@gmail.com 
 
-Let's Connect
+<h2>Let's Connect</h2>
+
 Stay updated with the latest news and updates by following us on social media:
 
 Lindkedin : @[bibek-gotame](https://www.linkedin.com/in/bibek-gotame/)
