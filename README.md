@@ -1,18 +1,22 @@
 
 <h1>Welcome to E-COM</h1>
 
-Overview
+<h2>Overview</h2>
 
 Welcome to the frontend repository of E-COM, an e-commerce website built with React. This project aims to provide users with a seamless online shopping experience, complete with a plethora of functionalities to make browsing, searching,sorting , add to cart,etc.
 
-Features
+
+
+<h2>Features</h2>
 
 Search: Easily find products using our powerful search functionality. </br>
 Filters: Refine your search results by rate, discount, price, and categories.</br>
 Product Categories: Browse products conveniently categorized for easy navigation.</br>
 Shopping Cart: Add your favorite items to the cart and proceed to checkout effortlessly.
 
-Installation
+
+<h2>Installation</h2>
+
 To get started with ShopifyClone frontend, follow these simple steps:
 
 1.Clone this repository to your local machine.
