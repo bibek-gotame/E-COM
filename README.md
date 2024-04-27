@@ -1,6 +1,5 @@
 
-# Heading 1 
-<b>Welcome to E-COM</b>
+<h1>Welcome to E-COM</h1>
 
 Overview
 
