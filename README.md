@@ -6,26 +6,30 @@ Welcome to the frontend repository of E-COM, an e-commerce website built with Re
 
 Features
 
-Search: Easily find products using our powerful search functionality.
-Filters: Refine your search results by rate, discount, price, and categories.
-Product Categories: Browse products conveniently categorized for easy navigation.
+Search: Easily find products using our powerful search functionality. </br>
+Filters: Refine your search results by rate, discount, price, and categories.</br>
+Product Categories: Browse products conveniently categorized for easy navigation.</br>
 Shopping Cart: Add your favorite items to the cart and proceed to checkout effortlessly.
 
 Installation
 To get started with ShopifyClone frontend, follow these simple steps:
 
 1.Clone this repository to your local machine.
+```
 git clone https://github.com/bibek-gotame/E-COM.git
 
 2.Navigate to the project directory.
+```
 cd E-COM
 
 3.Install dependencies using npm or yarn.
+```
 npm install
 # or
 yarn install
 
 4.Start the development server.
+```
 npm start
 # or
 yarn start
