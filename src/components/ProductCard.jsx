@@ -48,12 +48,14 @@ function ProductCard({ p }) {
             <p>{discountPercentage}</p>
           </div>
         </div>
-        {isInCart(id) ? (
+       
+      </div>
+      {isInCart(id) ? (
           <button
             onClick={() => {
               dispatch(removeCart(id));
             }}
-            className="bg-black text-white py-2 w-fit font-bold h-fit text-xl"
+            className="bg-black  text-white py-2 w-fit font-bold h-fit text-xl"
           >
             Remove from cart
           </button>
@@ -62,12 +64,11 @@ function ProductCard({ p }) {
             onClick={() => {
               dispatch(addToCart(p));
             }}
-            className="bg-black absolute right-0 bottom-0 text-white py-2 w-fit h-fit font-bold text-xl"
+            className="bg-black  text-white py-2 w-fit h-fit font-bold text-xl"
           >
             Add to Cart
           </button>
         )}
-      </div>
     </div>
   );
 }

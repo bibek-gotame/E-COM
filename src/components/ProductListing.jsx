@@ -7,6 +7,7 @@ import { addProductRender } from "../utils/store/productSlice";
 import { useGetProductCategory } from "../hooks/useGetProductCategory";
 
 function ProductListing() {
+  // console.log('hi');
   useGetProductList();
   useGetProductCategory();
   const productList = useSelector((store) => store.products?.productList);
@@ -136,7 +137,6 @@ function ProductListing() {
             </div>
             <div className="price my-2"></div>
             <h1 className="font-bold">Price</h1>
-
             <div className=" flex gap-2">
               <input
                 value={min}
@@ -181,7 +181,6 @@ function ProductListing() {
                   No Products Available
                 </p>
               )}
-
               {renderingData?.map((p) => (
                 <ProductCard key={p.id} p={p} />
               ))}

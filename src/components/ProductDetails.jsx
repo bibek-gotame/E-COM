@@ -7,9 +7,9 @@ function ProductDetails() {
   const productDetail = useSelector((store) => store.products?.productDetails);
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(productDetail);
+    // console.log(productDetail);
     if (productDetail == null) {
-      navigate("/productList"); 
+      navigate("/"); 
     }
   }, []);
 
