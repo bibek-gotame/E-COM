@@ -1,8 +1,8 @@
-<b>Welcome to ShopifyClone Frontend</b>
+<b>Welcome to E-COM</b>
 
 Overview
 
-Welcome to the frontend repository of ShopifyClone, an e-commerce website built with React. This project aims to provide users with a seamless online shopping experience, complete with a plethora of functionalities to make browsing, searching, and purchasing products a breeze.
+Welcome to the frontend repository of E-COM, an e-commerce website built with React. This project aims to provide users with a seamless online shopping experience, complete with a plethora of functionalities to make browsing, searching,sorting , add to cart,etc.
 
 Features
 
@@ -10,6 +10,7 @@ Search: Easily find products using our powerful search functionality.
 Filters: Refine your search results by rate, discount, price, and categories.
 Product Categories: Browse products conveniently categorized for easy navigation.
 Shopping Cart: Add your favorite items to the cart and proceed to checkout effortlessly.
+
 Installation
 To get started with ShopifyClone frontend, follow these simple steps:
 
