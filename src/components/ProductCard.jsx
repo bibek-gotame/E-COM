@@ -23,7 +23,7 @@ function ProductCard({ p }) {
     return cartItems.some((item) => item?.id === id);
   };
   return (
-    <div className=" relative border-2 w-full flex flex-col justify-between border-black bg-slate-200 overflow-hidden rounded-xl ">
+    <div className=" relative border-2 w-full flex flex-col justify-between border-black bg-slate-200 overflow-hidden rounded-xl  ">
       <div
         onClick={() => {
           dispatch(addProductDetails(p));
@@ -31,7 +31,7 @@ function ProductCard({ p }) {
         }}
         className="flex"
       >
-        <div className="p-2  min-w-[25rem] max-w-[25rem] h-[15rem] ">
+        <div className="p-2 min-w-[12rem] max-w-[12rem] h-[8rem] md:min-w-[15rem]  md:max-w-[15rem] md:h-[10rem]  lg:min-w-[25rem] lg:max-w-[25rem] md lg:h-[15rem]  mb-[3rem]">
           {" "}
           <img
             className=" rounded-lg mx-auto w-full h-full object-cover"
@@ -39,23 +39,24 @@ function ProductCard({ p }) {
             alt={title}
           />
         </div>
-        <div>
-          <div>
+        
+          <div className="border-2 py-2 ">
             <h1>{title}</h1>
-            <p>{description}</p>
+            <p className="hidden sm:inline-block  border-2 " >{description}</p>
             <p>$ {price * 133}</p>
             <p>{rating}</p>
             <p>{discountPercentage}</p>
           </div>
-        </div>
+      
        
       </div>
+
       {isInCart(id) ? (
           <button
             onClick={() => {
               dispatch(removeCart(id));
             }}
-            className="bg-black  text-white py-2 w-fit font-bold h-fit text-xl"
+            className="bg-black absolute bottom-1 left-2 px-3 rounded-lg  text-white py-2 w-fit font-bold h-fit text-xl"
           >
             Remove from cart
           </button>
@@ -64,7 +65,7 @@ function ProductCard({ p }) {
             onClick={() => {
               dispatch(addToCart(p));
             }}
-            className="bg-black  text-white py-2 w-fit h-fit font-bold text-xl"
+            className="bg-black  absolute bottom-1 left-2 px-3 rounded-lg  text-white py-2 w-fit h-fit font-bold text-xl"
           >
             Add to Cart
           </button>
