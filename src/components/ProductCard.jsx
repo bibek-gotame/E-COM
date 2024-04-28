@@ -23,7 +23,7 @@ function ProductCard({ p }) {
     return cartItems.some((item) => item?.id === id);
   };
   return (
-    <div className=" relative border-2 w-full flex flex-col justify-between border-black bg-slate-200 overflow-hidden rounded-xl  ">
+    <div className=" relative  w-full flex flex-col justify-between bg-black bg-opacity-10 overflow-hidden rounded-xl  ">
       <div
         onClick={() => {
           dispatch(addProductDetails(p));
@@ -40,9 +40,9 @@ function ProductCard({ p }) {
           />
         </div>
         
-          <div className="border-2 py-2 ">
+          <div className=" py-2 ">
             <h1>{title}</h1>
-            <p className="hidden sm:inline-block  border-2 " >{description}</p>
+            <p className="hidden sm:inline-block " >{description}</p>
             <p>$ {price * 133}</p>
             <p>{rating}</p>
             <p>{discountPercentage}</p>
