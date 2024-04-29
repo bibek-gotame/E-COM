@@ -70,6 +70,10 @@ function ProductListing() {
             Filter
           </div>
         </div>
+        <div className="flex mx-2">
+
+        
+        <Filter classs={'hidden md:inline-block  '} />
 
         {renderingData.length === 0 ? (
           <p className="font-bold text-xl text-center text-black ">
@@ -78,7 +82,6 @@ function ProductListing() {
         ) : (
           <div className=" flex gap-2  mb-16 px-4">
             {/* filters */}
-            <Filter classs={'hidden md:inline-block  '} />
             {/* Product Rendering */}
             <div>
               <div className="flex  w-full flex-wrap place-content-evenly gap-2   ">
@@ -95,6 +98,7 @@ function ProductListing() {
             </div>
           </div>
         )}
+        </div>
       </div>
     );
 }

@@ -73,11 +73,8 @@ function Filter({ classs }) {
     // }
 
     // console.log("fine");
-    const priceFilteredData = renderingData.filter(
-      (d) => d.price  <= max && d.price >= min
-    );
+    const priceFilteredData = renderingData.filter((d) => d.price  <= max && d.price >= min);
     dispatch(addProductRender(priceFilteredData));
-    console.log(priceFilteredData);
   };
   return (
     <div>
