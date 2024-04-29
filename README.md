@@ -8,12 +8,11 @@ Welcome to the frontend repository of E-COM, an e-commerce website built with Re
 
 
 <h2>Features</h2>
-
-Search: Easily find products using our powerful search functionality. </br>
-Filters: Refine your search results by rate, discount, price, and categories.</br>
-Product Categories: Browse products conveniently categorized for easy navigation.</br>
-Shopping Cart: Add your favorite items to the cart and proceed to checkout effortlessly.
-
+ <b>Advanced Search and Filtering:</b>Implemented robust search and multiple filtering options, including sorting by relevance, price, and brand, to enhance user navigation and product discovery.
+</br>
+<b>Seamless Cart Management:</b> Developed intuitive cart functionality, allowing users to effortlessly add products and manage their selections, improving the overall shopping experience.</br>
+<b>Detailed Product Pages:</b> Designed engaging product pages with comprehensive information, high-resolution images, and customer reviews, empowering users to make informed purchase decisions.</br>
+<b>Responsive Design:</b> Employed responsive design principles to ensure compatibility across various devices, delivering a seamless browsing experience for users on desktop and mobile platforms.
 
 <h2>Installation</h2>
 
