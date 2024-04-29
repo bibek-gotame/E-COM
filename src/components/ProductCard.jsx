@@ -43,7 +43,7 @@ function ProductCard({ p }) {
           <div className=" py-2 ">
             <h1>{title}</h1>
             <p className="hidden sm:inline-block " >{description}</p>
-            <p>$ {price * 133}</p>
+            <p>$ {price}</p>
             <p>{rating}</p>
             <p>{discountPercentage}</p>
           </div>

@@ -3,7 +3,7 @@ import { addProductRender } from "../utils/store/productSlice";
 import Button from "./button";
 import { useState } from "react";
 
-function Filter() {
+function Filter({ classs }) {
   const productList = useSelector((store) => store.products?.productList);
   const renderingData = useSelector((store) => store.products?.productRender);
   const dispatch = useDispatch();
@@ -74,7 +74,7 @@ function Filter() {
 
     // console.log("fine");
     const priceFilteredData = renderingData.filter(
-      (d) => d.price * 133 <= max && d.price * 133 >= min
+      (d) => d.price  <= max && d.price >= min
     );
     dispatch(addProductRender(priceFilteredData));
     console.log(priceFilteredData);
@@ -82,10 +82,15 @@ function Filter() {
   return (
     <div>
       {" "}
-      <div className="hidden md:inline-block   rounded-lg bg-black bg-opacity-10  h-fit    px-2  py-3 ">
+      <div  
+        className={
+          classs + "  rounded-lg bg-black bg-opacity-10  h-fit    px-2  py-3 "
+        }
+      >
         <h1 className="font-bold text-xl">
           Filters | Items ({renderingData.length})
         </h1>
+        
         <div className="rating">
           <h1 className="font-bold my-2">Customer rating</h1>
           <Button onClick={handleTopRate4_5} title={"4.5 & Up"} />
@@ -93,33 +98,40 @@ function Filter() {
           <Button onClick={handleTopRate3_5} title={"3.5 & Up"} />
           <Button onClick={handleTopRate3} title={"3 & Up"} />
         </div>
-        <div className="price my-2"></div>
-        <h1 className="font-bold">Price</h1>
-        <div className=" flex gap-2">
-          <input
-            value={min}
-            onChange={(e) => setMin(e.target.value)}
-            type="number"
-            placeholder="min"
-            className="w-24 border border-black   rounded-sm px-2 "
-          />
-          -
-          <input
-            value={max}
-            onChange={(e) => setMax(e.target.value)}
-            type="number"
-            placeholder="max"
-            className="w-24 border border-black   rounded-sm px-2 "
-          />
-        </div>
-        {/* {priceError && <p>{priceError}</p>} */}
+        <div className="price my-2">
+          <h1 className="font-bold">Price</h1>
+          <div className=" flex flex-wrap gap-2">
+          <div className=" flex gap-2">
 
-        <button
+            <input
+              value={min}
+              onChange={(e) => setMin(e.target.value)}
+              type="number"
+              placeholder="min"
+              className="w-24 border border-black   rounded-sm px-2 "
+            />
+            -
+            <input
+              value={max}
+              onChange={(e) => setMax(e.target.value)}
+              type="number"
+              placeholder="max"
+              className="w-24 border border-black   rounded-sm px-2 "
+            />          </div>
+
+              <button
           onClick={() => handlePriceSearch(min, max)}
           className="border px-2 text-sm bg-gray-100 border-black rounded-sm hover:text-gray-200 hover:bg-black font-semibold"
         >
           search
         </button>
+          </div>
+       
+        {/* {priceError && <p>{priceError}</p>} */}
+
+      
+        </div>
+
         <div className="discount my-2">
           <h1 className="my-2 font-bold">Discount</h1>
           <Button onClick={handleDiscount20} title={"20% & more"} />

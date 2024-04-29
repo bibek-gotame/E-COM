@@ -6,6 +6,7 @@ import { addProductRender } from "../utils/store/productSlice";
 import { useGetProductCategory } from "../hooks/useGetProductCategory";
 import ProductCategory from "./ProductCategory";
 import Filter from "./Filter";
+import Sort from "./Sort";
 
 function ProductListing() {
   useGetProductList();
@@ -30,34 +31,32 @@ function ProductListing() {
   } else
     return (
       <div className="relative">
-        {/* filter-mobile */}
+        {/* filter-sort-mobile */}
         <div
           className={
             +toggle
-              ? "w-full h-full fixed bg-white opacity-90  z-30 top-0 "
+              ? "w-full h-full absolute  md:hidden bg-white opacity-[0.99]  z-30 top-[-7.35rem]  "
               : "hidden"
           }
         >
           <p
-            className=" font-extrabold m-10  text-2xl w-fit cursor-pointer"
+            className=" font-extrabold  bg-black text-white text-2xl px-2  cursor-pointer"
             onClick={() => setToggle(false)}
           >
             close
           </p>
+          <Filter classs={'bg-white'} />
+          <Sort classs={'my-2 mx-2'}/>
         </div>
         <ProductCategory />
-        <div className="sort flex items-center">
-          <h1>SORT BY</h1>
-          <button className="border-4 font-bold px-4 py-1">
-            Price Low to High
-          </button>
-        </div>
+
+       <Sort classs={'hidden md:flex my-2 mx-4'}/>
         {searchResult && (
           <div className="px-4 py-2 font-bold">
             Search Results for '{searchResult}'{" "}
           </div>
         )}
-        <div className="sort_filter flex font-bold md:hidden">
+        <div className="sort_filter   flex font-bold md:hidden">
           <div
             className="sort w-1/2 text-center border-r-2 py-1.5 my-2 cursor-pointer border-black"
             onClick={() => setToggle(true)}
@@ -79,11 +78,11 @@ function ProductListing() {
         ) : (
           <div className=" flex gap-2  mb-16 px-4">
             {/* filters */}
-            <Filter />
+            <Filter classs={'hidden md:inline-block  '} />
             {/* Product Rendering */}
             <div>
               <div className="flex  w-full flex-wrap place-content-evenly gap-2   ">
-                {renderingData?.slice(page * 5 - 5, page * 5).map((p) => (
+                {renderingData?.map((p) => (
                   <ProductCard key={p.id} p={p} />
                 ))}
               </div>
@@ -91,7 +90,7 @@ function ProductListing() {
                 <span>{'<-'}</span>
                 {/* [...Array(renderingData).map(_,i)] */}
                 <span>{'->'}</span>
-
+                {/* .slice(page * 5 - 5, page * 5)   */}
               </div>
             </div>
           </div>
