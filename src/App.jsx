@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import Body from "./components/Body";
+import Body from "./components/Body/Body";
 import { store } from "./utils/store/store";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ProductListing from "./components/ProductListing";
