@@ -16,8 +16,7 @@ function ProductListing() {
   const renderingData = useSelector((store) => store.products?.productRender);
   const searchResult = useSelector((store) => store.products?.searchResult);
   const [toggle, setToggle] = useState(false);
-
-  const [page, setPage] = useState(2)
+  
   useEffect(() => {
     dispatch(addProductRender(productList));
   }, [productList]);
@@ -81,19 +80,12 @@ function ProductListing() {
           </p>
         ) : (
           <div className=" flex gap-2  mb-16 px-4">
-            {/* filters */}
             {/* Product Rendering */}
             <div>
               <div className="flex  w-full flex-wrap place-content-evenly gap-2   ">
                 {renderingData?.map((p) => (
                   <ProductCard key={p.id} p={p} />
                 ))}
-              </div>
-              <div className="pagination">
-                <span>{'<-'}</span>
-                {/* [...Array(renderingData).map(_,i)] */}
-                <span>{'->'}</span>
-                {/* .slice(page * 5 - 5, page * 5)   */}
               </div>
             </div>
           </div>

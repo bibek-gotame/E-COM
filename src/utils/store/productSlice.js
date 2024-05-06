@@ -9,18 +9,14 @@ const productSlice = createSlice({
         productDetails:null,
         searchResult:null,
         productCategory:null
-        // error:'Loading'
     },
     reducers:{
         addProductList:(state,action)=>{
 
             state.productList = action.payload
-            // state.renderingData = action.payload
         },
         addProductRender:(state,action)=>{
-            
             state.productRender = action.payload
-            // state.error = action.payload
         },
         addProductDetails:(state,action)=>{
             state.productDetails = action.payload

@@ -8,7 +8,6 @@ function ProductCategory() {
 const dispatch = useDispatch()
   const getCategory = (p) => {
     const fileteredData = productList.filter((pL) => pL.category === p);
-    // console.log(fileteredData);
     dispatch(addProductRender(fileteredData));
   };
   return (

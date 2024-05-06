@@ -4,30 +4,11 @@ import Button from "./button";
 import { useState } from "react";
 
 function Filter({ classs }) {
-  const productList = useSelector((store) => store.products?.productList);
   const renderingData = useSelector((store) => store.products?.productRender);
   const dispatch = useDispatch();
-  // const [productBrand, setProductBrand] = useState(null);
   const [min, setMin] = useState(""); // ?set as string until pricing validation
   const [max, setMax] = useState("");
-  // const [priceError, setPriceError] = useState();
-
-  // useEffect(() => {
-  //   rd();
-  // }, [renderingData]);
-  // useEffect(() => {
-  //   console.log(productBrand);
-  //   productBrand &&
-  //     Object.entries(productBrand).map((p) => {
-  //       console.log("hi");
-  //     });
-  // }, [productBrand]);
-  // const rd = () => {
-  //   const brand = renderingData?.map((p) => p.brand);
-  //   const newBrand = new Set(brand);
-  //   setProductBrand(newBrand);
-  // };
-  //! All are runnnig in rendering but should change dynamicaly
+ 
 
   const handleTopRate4_5 = () => {
     const topRatedProduct = renderingData.filter((p) => p.rating >= 4.5);
@@ -62,14 +43,7 @@ function Filter({ classs }) {
     }
   };
 
-  // const data = [{ price: 100 }, { price: 200 }, { price: 300 }];
   const handlePriceFilter = (min, max) => {
-    // console.log(min);
-    // console.log(max);
-    // if (min > max) return setPriceError("min should be greater than");
-    // if (min > max) {
-    //   setPriceError(null);
-    // }
     const priceFilteredData = renderingData.filter(
       (d) => d.price <= max && d.price >= min
     );
@@ -122,8 +96,6 @@ function Filter({ classs }) {
               search
             </button>
           </div>
-
-          {/* {priceError && <p>{priceError}</p>} */}
         </div>
 
         <div className="discount my-2">
@@ -133,17 +105,10 @@ function Filter({ classs }) {
           <Button onClick={()=>{handleDiscount('10')}} title={"10% & more"} />
           <Button onClick={()=>{handleDiscount('5')}} title={"5% & more"} />
         </div>
-        <div className="brand">
-          {/* {productBrand && Object.entries(productBrand)?.map((p,i) => <div key={i}>hi</div>)} */}
-        </div>
+      
       </div>
     </div>
   );
 }
 
 export default Filter;
-
-
-
-// there should be option to select the filter .
-//

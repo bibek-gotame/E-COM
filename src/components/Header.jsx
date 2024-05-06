@@ -1,30 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addProductRender, addsearchResult } from "../utils/store/productSlice";
-import { useRef, useState } from "react";
+import {  useState } from "react";
+import {  CART_ICON_URL, SEARCH_ICON_URL, USER_ICON_URL } from "../utils/constant";
 
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const Carts = useSelector((store) => store.cart?.addedCart);
   const productList = useSelector((store) => store.products?.productList);
-  // const inputName = useRef(null);
   const [inputName, setInputName] = useState(null);
 
   const getSearch = () => {
-    // console.log('hi');
     const input = inputName.toLowerCase();
     const searchProduct = productList?.filter((p) => {
       const productWords = p.title + " " + p.brand + " " + p.category;
-      // return productWords.includes(input);
       return new RegExp(input, "i").test(productWords);
     });
-    // console.log(searchProduct);
     dispatch(addProductRender(searchProduct));
     dispatch(addsearchResult(input));
-    // console.log(input);
     setInputName("");
-    // console.log('hi');
   };
 
   return (
@@ -64,7 +59,7 @@ function Header() {
             }}
           >
             <img
-              src="https://superawesomevectors.com/wp-content/uploads/2016/01/simple-black-shopping-cart-icon-800x566.jpg"
+              src={CART_ICON_URL}
               alt="cart"
               className="w-[5rem] "
             />{" "}
@@ -74,14 +69,13 @@ function Header() {
           </p>
 
           <img
-            src="https://i.pinimg.com/564x/57/00/c0/5700c04197ee9a4372a35ef16eb78f4e.jpg"
+            src={USER_ICON_URL}
             alt="user"
             className="w-8 h-8"
           />
         </div>
       </div>
-{/* <div className=""> */}
-  
+
     
       <div className="flex md:hidden mt-3 px-4  ">
         <input
@@ -96,10 +90,9 @@ function Header() {
           className="min-w-[3rem]  rounded-sm border border-black
           font-bold text-lg rounded-r-full "
         >
-          <img src="https://logowik.com/content/uploads/images/search7780.jpg" alt="search" className="h-[1.5rem] object-cover"/>
+          <img src={SEARCH_ICON_URL} alt="search" className="h-[1.5rem] object-cover"/>
         </button>
       </div>
-{/* </d iv> */}
     </>
   );
 }

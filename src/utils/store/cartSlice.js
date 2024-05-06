@@ -15,7 +15,6 @@ export const cartSlice = createSlice({
         },
         clearCart: (state) => {
             state.addedCart = []
-            // return null
         }
     }
 })
