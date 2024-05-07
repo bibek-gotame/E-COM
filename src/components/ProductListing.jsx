@@ -44,12 +44,12 @@ function ProductListing() {
           >
             close
           </p>
-          <Filter classs={'bg-white'} />
-          <Sort classs={'my-2 mx-2'}/>
+          <Filter containerClassName={'bg-white'} />
+          <Sort containerClassName={'my-2 mx-2'}/>
         </div>
         <ProductCategory />
 
-       <Sort classs={'hidden md:flex my-2 mx-4'}/>
+       <Sort containerClassName={'hidden md:flex my-2 mx-4'}/>
         {searchResult && (
           <div className="px-4 py-2 font-bold">
             Search Results for '{searchResult}'{" "}
@@ -72,7 +72,7 @@ function ProductListing() {
         <div className="flex mx-2">
 
         
-        <Filter classs={'hidden md:inline-block  '} />
+        <Filter containerClassName={'hidden md:inline-block  '} />
 
         {renderingData.length === 0 ? (
           <p className="font-bold text-xl text-center text-black ">

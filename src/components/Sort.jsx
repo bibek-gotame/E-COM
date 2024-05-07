@@ -1,42 +1,37 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addProductRender } from "../utils/store/productSlice";
 
-function Sort({classs}) {
+function Sort({containerClassName}) {
     const dispatch = useDispatch();
 
     const renderingData = useSelector((store) => store.products?.productRender);
+console.log(renderingData);
+const sortByCriteria = (criteria ,sort)=>{
+  let sortData ;
+  if(criteria === 'price'){
+    sortData = [...renderingData].sort((a,b)=> sort === 'asc'? a.price - b.price: b.price - a.price)
+  }
+  if(criteria === 'rating'){
+    sortData = [...renderingData].sort((a,b)=> sort === 'asc'? a.rating - b.rating: b.rating - a.rating)
+  }
+  dispatch(addProductRender(sortData));
+}
 
-    const PriceLH = ()=>{
-        const data = [...renderingData].sort((a, b) => a.price - b.price);   
-        dispatch(addProductRender(data));
-    }
-    const PriceHL = ()=>{
-        const data = [...renderingData].sort((a, b) => b.price - a.price);   
-        dispatch(addProductRender(data));
-    }
-    const RatingLH = ()=>{
-        const data = [...renderingData].sort((a, b) => a.rating - b.rating);   
-        dispatch(addProductRender(data));
-    }
-    const RatingHL = ()=>{
-        const data = [...renderingData].sort((a, b) => b.rating - a.rating);   
-        dispatch(addProductRender(data));
-    }
   return (
-    <div className={classs}>
-         <div className= { classs + " sort font-bold items-center  gap-[2rem]"}>
+    <div className={containerClassName}>
+         <div className= { containerClassName + " sort font-bold items-center  gap-[2rem]"}>
           <h1>SORT BY</h1>
           <div className="flex flex-wrap items-center gap-2 ">
-          <button onClick={PriceLH} className="border-4  px-4 py-1 hover:bg-black hover:text-white rounded-md">
+          <button onClick={()=> sortByCriteria('price','asc')} className="border-4  px-4 py-1 hover:bg-black hover:text-white rounded-md">
             Price Low to High
           </button>
-          <button onClick={PriceHL} className="border-4  px-4 py-1  hover:bg-black hover:text-white rounded-md">
+          <button onClick={()=> sortByCriteria('price','desc')} className="border-4  px-4 py-1  hover:bg-black hover:text-white rounded-md">
             Price High to Low
           </button>
-          <button onClick={RatingLH} className="border-4  px-4 py-1  hover:bg-black hover:text-white rounded-md">
+          <button onClick={()=> sortByCriteria('rating','asc')} className="border-4  px-4 py-1  hover:bg-black hover:text-white rounded-md">
             Rating Low to High
           </button>
-          <button onClick={RatingHL} className="border-4  px-4 py-1  hover:bg-black hover:text-white rounded-md">
+          <button onClick={()=> sortByCriteria('rating','desc')} className="border-4  px-4 py-1  hover:bg-black hover:text-white rounded-md">
             Rating High to Low
           </button>
           </div>

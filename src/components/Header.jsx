@@ -9,7 +9,7 @@ function Header() {
   const dispatch = useDispatch();
   const Carts = useSelector((store) => store.cart?.addedCart);
   const productList = useSelector((store) => store.products?.productList);
-  const [inputName, setInputName] = useState(null);
+  const [inputName, setInputName] = useState('');
 
   const getSearch = () => {
     const input = inputName.toLowerCase();
@@ -52,7 +52,7 @@ function Header() {
         </div>
 
         <div className="flex md:text-2xl gap-2 items-center">
-          <p
+          <div
             className="cursor-pointer flex items-center text-red-600 relative"
             onClick={() => {
               navigate("/cart");
@@ -66,7 +66,7 @@ function Header() {
             <p className="absolute top-0 md:top-[-0.4rem] right-[35%]">
               {Carts?.length !== 0 && Carts?.length}
             </p>
-          </p>
+          </div>
 
           <img
             src={USER_ICON_URL}

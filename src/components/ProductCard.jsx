@@ -44,7 +44,7 @@ function ProductCard({ p }) {
             <h1>{title}</h1>
             <p className="hidden sm:inline-block " >{description}</p>
             <p>$ {price}</p>
-            <p>{rating}</p>
+            <p>Rating{rating}</p>
             <p>{discountPercentage}</p>
           </div>
       
