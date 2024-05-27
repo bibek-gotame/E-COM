@@ -7,7 +7,7 @@ function ProductCard({ p }) {
   const cartItems = useSelector((store) => store.cart?.addedCart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   if (!p) return;
   const {
     thumbnail,
@@ -39,37 +39,35 @@ function ProductCard({ p }) {
             alt={title}
           />
         </div>
-        
-          <div className=" py-2 ">
-            <h1>{title}</h1>
-            <p className="hidden sm:inline-block " >{description}</p>
-            <p>$ {price}</p>
-            <p>Rating{rating}</p>
-            <p>{discountPercentage}</p>
-          </div>
-      
-       
+
+        <div className=" py-2 ">
+          <h1>{title}</h1>
+          <p className="hidden sm:inline-block ">{description}</p>
+          <p>$ {price}</p>
+          <p>Rating{rating}</p>
+          <p>{discountPercentage}</p>
+        </div>
       </div>
 
       {isInCart(id) ? (
-          <button
-            onClick={() => {
-              dispatch(removeCart(id));
-            }}
-            className="bg-black absolute bottom-1 left-2 px-3 rounded-lg  text-white py-2 w-fit font-bold h-fit text-xl"
-          >
-            Remove from cart
-          </button>
-        ) : (
-          <button
-            onClick={() => {
-              dispatch(addToCart(p));
-            }}
-            className="bg-black  absolute bottom-1 left-2 px-3 rounded-lg  text-white py-2 w-fit h-fit font-bold text-xl"
-          >
-            Add to Cart
-          </button>
-        )}
+        <button
+          onClick={() => {
+            dispatch(removeCart(id));
+          }}
+          className="bg-black absolute bottom-1 left-2 px-3 rounded-lg  text-white py-2 w-fit font-bold h-fit text-xl"
+        >
+          Remove from cart
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            dispatch(addToCart(p));
+          }}
+          className="bg-black  absolute bottom-1 left-2 px-3 rounded-lg  text-white py-2 w-fit h-fit font-bold text-xl"
+        >
+          Add to Cart
+        </button>
+      )}
     </div>
   );
 }

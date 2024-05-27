@@ -16,7 +16,7 @@ function ProductListing() {
   const renderingData = useSelector((store) => store.products?.productRender);
   const searchResult = useSelector((store) => store.products?.searchResult);
   const [toggle, setToggle] = useState(false);
-  
+
   useEffect(() => {
     dispatch(addProductRender(productList));
   }, [productList]);
@@ -44,12 +44,12 @@ function ProductListing() {
           >
             close
           </p>
-          <Filter containerClassName={'bg-white'} />
-          <Sort containerClassName={'my-2 mx-2'}/>
+          <Filter containerClassName={"bg-white"} />
+          <Sort containerClassName={"my-2 mx-2"} />
         </div>
         <ProductCategory />
 
-       <Sort containerClassName={'hidden md:flex my-2 mx-4'}/>
+        <Sort containerClassName={"hidden md:flex my-2 mx-4"} />
         {searchResult && (
           <div className="px-4 py-2 font-bold">
             Search Results for '{searchResult}'{" "}
@@ -70,26 +70,24 @@ function ProductListing() {
           </div>
         </div>
         <div className="flex mx-2">
+          <Filter containerClassName={"hidden md:inline-block  "} />
 
-        
-        <Filter containerClassName={'hidden md:inline-block  '} />
-
-        {renderingData.length === 0 ? (
-          <p className="font-bold text-xl text-center text-black ">
-            No Products Available
-          </p>
-        ) : (
-          <div className=" flex gap-2  mb-16 px-4">
-            {/* Product Rendering */}
-            <div>
-              <div className="flex  w-full flex-wrap place-content-evenly gap-2   ">
-                {renderingData?.map((p) => (
-                  <ProductCard key={p.id} p={p} />
-                ))}
+          {renderingData.length === 0 ? (
+            <p className="font-bold text-xl text-center text-black ">
+              No Products Available
+            </p>
+          ) : (
+            <div className=" flex gap-2  mb-16 px-4">
+              {/* Product Rendering */}
+              <div>
+                <div className="flex  w-full flex-wrap place-content-evenly gap-2   ">
+                  {renderingData?.map((product) => (
+                    <ProductCard key={product.id} p={product} />
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
         </div>
       </div>
     );

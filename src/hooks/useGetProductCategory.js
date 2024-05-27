@@ -13,7 +13,9 @@ export const useGetProductCategory = () => {
         const json = await data.json();
         dispatch(addProductCategory(json))
     };
+
     useEffect(() => {
         !productCategory && getData();
     }, []);
+    
 }

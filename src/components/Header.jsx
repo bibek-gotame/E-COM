@@ -1,15 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addProductRender, addsearchResult } from "../utils/store/productSlice";
-import {  useState } from "react";
-import {  CART_ICON_URL, SEARCH_ICON_URL, USER_ICON_URL } from "../utils/constant";
+import { useState } from "react";
+import {
+  CART_ICON_URL,
+  SEARCH_ICON_URL,
+  USER_ICON_URL,
+} from "../utils/constant";
 
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const Carts = useSelector((store) => store.cart?.addedCart);
   const productList = useSelector((store) => store.products?.productList);
-  const [inputName, setInputName] = useState('');
+  const [inputName, setInputName] = useState("");
 
   const getSearch = () => {
     const input = inputName.toLowerCase();
@@ -58,25 +62,16 @@ function Header() {
               navigate("/cart");
             }}
           >
-            <img
-              src={CART_ICON_URL}
-              alt="cart"
-              className="w-[5rem] "
-            />{" "}
+            <img src={CART_ICON_URL} alt="cart" className="w-[5rem] " />{" "}
             <p className="absolute top-0 md:top-[-0.4rem] right-[35%]">
               {Carts?.length !== 0 && Carts?.length}
             </p>
           </div>
 
-          <img
-            src={USER_ICON_URL}
-            alt="user"
-            className="w-8 h-8"
-          />
+          <img src={USER_ICON_URL} alt="user" className="w-8 h-8" />
         </div>
       </div>
 
-    
       <div className="flex md:hidden mt-3 px-4  ">
         <input
           value={inputName}
@@ -90,7 +85,11 @@ function Header() {
           className="min-w-[3rem]  rounded-sm border border-black
           font-bold text-lg rounded-r-full "
         >
-          <img src={SEARCH_ICON_URL} alt="search" className="h-[1.5rem] object-cover"/>
+          <img
+            src={SEARCH_ICON_URL}
+            alt="search"
+            className="h-[1.5rem] object-cover"
+          />
         </button>
       </div>
     </>
