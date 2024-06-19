@@ -14,7 +14,7 @@ export const useGetProductList = () => {
         dispatch(addProductList(json.products))
     };
     useEffect(() => {
-        // !productList && getData();
+        !productList && getData();
     }, []);
 
 }
