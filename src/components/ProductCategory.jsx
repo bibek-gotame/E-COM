@@ -10,7 +10,7 @@ function ProductCategory() {
   const dispatch = useDispatch();
 
   const getCategory = (p) => {
-    const fileteredData = productList.filter((pL) => pL.category === p);
+    const fileteredData = productList.filter((product) => product.category === p.slug);
     dispatch(addProductRender(fileteredData));
   };
 
@@ -22,7 +22,7 @@ function ProductCategory() {
             <p
               onClick={() => getCategory(p)}
               key={i}
-              className="rounded-md bg-black text-white font-semibold px-2 py-1 cursor-pointer "
+              className="rounded-md bg-black text-white hover:text-black hover:bg-white border-2 border-transparent hover:border-black font-semibold px-2 py-1 cursor-pointer "
             >
               {p.name}
             </p>

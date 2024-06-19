@@ -12,7 +12,6 @@ const productSlice = createSlice({
     },
     reducers:{
         addProductList:(state,action)=>{
-
             state.productList = action.payload
         },
         addProductRender:(state,action)=>{
